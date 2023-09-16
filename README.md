@@ -5,7 +5,7 @@
 <p>2. Создать venv в созданной директории и активиривать ее (Install: python3 -m venv venv. Activart: activate)</p>
 <p>3. В активированой среде установить django (pip3 install django)</p>
 <p>4. Создать новйы проект (django-admin.py startproject learning_log) <b>! в конце точку</b></p>
-
+--
 
 <h2>Работа над проектом</h2>
 <p>1. Создание БД</p>
