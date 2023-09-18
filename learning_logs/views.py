@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from learning_logs.models import Topic, Entry
 from learning_logs.forms import TopicForm, EntryForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -9,6 +10,7 @@ def index(request):
     return render(request, 'learning_logs/index.html')
 
 
+@login_required()
 def topics(request):
     """Выводит список тем."""
     topics = Topic.objects.order_by('date_added')

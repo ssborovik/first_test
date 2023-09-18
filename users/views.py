@@ -1,6 +1,9 @@
+from django.contrib.auth.views import LogoutView
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import views as auth_views
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -14,5 +17,12 @@ def register(request):
             login(request, new_user)
             return redirect('learning_logs:index')
     context = {'form': form}
-    return render(request, 'registration/register.html',context)
+    return render(request, 'registration/register.html', context)
 
+
+class MyLogoutView(LogoutView):
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        context = {'response': response}
+        # После выхода пользователя, перенаправляем его на главную страницу
+        return render(request, 'registration/register.html', context)
